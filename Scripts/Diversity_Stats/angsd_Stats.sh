@@ -1,9 +1,9 @@
 #!/bin/bash -l
 #SBATCH -D /scratch/asingh3/Indian_Amaranth/  
-#SBATCH -o /scratch/asingh3/Indian_Amaranth/logs/SFSLog-%j.txt
-#SBATCH -e /scratch/asingh3/Indian_Amaranth/logs/SFSLog-%j.err
-#SBATCH -t 2-24:00:00
-#SBATCH -J angsd-SFS
+#SBATCH -o /scratch/asingh3/Indian_Amaranth/logs/STATSLog-%j.txt
+#SBATCH -e /scratch/asingh3/Indian_Amaranth/logs/STATSLog-%j.err
+#SBATCH -t 4-24:00:00
+#SBATCH -J angsd-STATS
 #SBATCH --partition=smp-rh7
 #SBATCH --mem 250g
 #SBATCH --array=0-10
@@ -34,3 +34,13 @@ echo processing ${FILE}
 -trim 0 \
 -c 50 \
 -doCounts 1
+
+
+/home/asingh3/TOOLS/angsd/bin/realSFS \
+Analysis/SFS/${FILE}_folded.saf.idx \
+-fold 1 > Analysis/SFS/${FILE}_folded.sfs
+
+#### Diversity Stats ###### theta per site
+/home/asingh3/TOOLS/angsd/bin/realSFS saf2theta Analysis/SFS/${FILE}_folded.saf.idx -sfs Analysis/SFS/${FILE}_folded.sfs -outname Analysis/SFS/${FILE}_folded -fold 1
+### Theta estimates
+/home/asingh3/TOOLS/angsd/bin/thetaStat do_stat Analysis/SFS/${FILE}_folded.thetas.idx -win 10000 -step 10000 -outnames Analysis/SFS/${FILE}_folded.thetas.windows.gz

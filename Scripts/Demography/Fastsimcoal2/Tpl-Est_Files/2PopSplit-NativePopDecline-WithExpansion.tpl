@@ -7,8 +7,8 @@ INDIA$
 26
 22
 //Growth rates	: negative growth implies population expansion
-0
-0
+R1
+R2
 //Number of migration matrices : 0 implies no migration between demes
 0
 //historical event: time, source, sink, migrants, new deme size, new growth rate, migration matrix index

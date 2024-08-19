@@ -10,9 +10,17 @@ INDIA$
 0
 0
 //Number of migration matrices : 0 implies no migration between demes
-0
+2
+//Migration matrix 0
+0.000 0.000
+0.000 0.000
+//Migration matrix 1
+0.000 MIG12
+MIG21 0.000
 //historical event: time, source, sink, migrants, new deme size, new growth rate, migration matrix index
-1 historical event
+3 historical event
+TEND$ 1 1 1 1 0 1
+TSTART$ 1 1 1 1 0 0
 TDIV$ 1 0 1 RESIZE 0 0
 //Number of independent loci [chromosome] 
 1 0

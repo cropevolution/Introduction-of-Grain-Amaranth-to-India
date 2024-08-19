@@ -1,0 +1,17 @@
+// Priors and rules file
+// *********************
+
+[PARAMETERS]
+//#isInt? #name   #dist.#min  #max 
+//all Ns are in number of haploid individuals
+1  ANCSIZE    unif    10000    10000000    output	
+1  NATIVE$    unif    10000    10000000    output
+1  INDIA$    unif    10000    10000000    output
+1  TDIV$     unif    100      10000       output bounded
+0  MIG12      logunif 1e-5     1e-2        output
+0  MIG21      logunif 1e-5     1e-2        output
+1  TEND$      unif    10       TDIV$      output paramInRange
+1  TSTART$    unif    TEND$    TDIV$      output paramInRange
+
+[COMPLEX PARAMETERS]
+0 RESIZE = ANCSIZE/INDIA$   hide 
